@@ -1,19 +1,19 @@
 
 public class Calculator {
 	
-	float add(float x, float y) {
+	double add(double x, double y) {
 		return x+y;
 	}
 	
-	float sub(float x, float y) {
+	double sub(double x, double y) {
 		return x - y;
 	}
 	
-	float multi(float x, float y) {
+	double multi(double x, double y) {
 		return x*y;
 	}
 	
-	float divide(float x, float y) {
+	double divide(double x, double y) {
 		return x/y;
 	}
 	
