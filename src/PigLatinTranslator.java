@@ -16,7 +16,7 @@ public class PigLatinTranslator {
      */
      private static String pigWord(String word) {
           int split = firstVowel(word);
-          return word.substring(split)+"-"+word.substring(0, split)+"ay";
+          return word.substring(split)+""+word.substring(0, split)+"ay";
      }
 
      /**
