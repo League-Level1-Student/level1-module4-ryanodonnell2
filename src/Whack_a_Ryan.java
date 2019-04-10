@@ -1,67 +1,106 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Random;
 
 import javax.swing.*;
 
-public class Whack_a_Ryan {
+public class Whack_a_Ryan implements MouseListener{
 	
 	JFrame frame;
 	JPanel Top;
-	JPanel MTop;
-	JPanel Middle;
-	JPanel MBottom;
-	JPanel Bottom;
-	JPanel Topp;
-	JPanel bottomp;
-	JPanel centerp;
-	
+	Random r = null;
+	int Score = 0;
+	int z;
+	Whack_a_Ryan Ryan;	
 	void setup() {
+		r = new Random();
+		
+		Top = new JPanel();
 		frame = new JFrame();
 		frame.setVisible(true);
-		Top = new JPanel();
-		MTop = new JPanel();
-		Middle = new JPanel();
-		MBottom = new JPanel();
-		Bottom = new JPanel();
-		Topp = new JPanel();
-		bottomp = new JPanel();
-		centerp = new JPanel();
+		frame.setSize(275,300);
 		
-		for (int i = 0; i < 25; i++) {
-			int x = i/3;
+		
+		frame.add(Top);
+		drawButtons();
+	}
+	void drawButtons() {
+		z = r.nextInt(24);
+		for (int i = 0; i < 24; i++) {
 			JButton y = new JButton();
-			y.setPreferredSize(new Dimension(75,75));
-			switch(x) {
-			case 0:
-				Top.add(y);
-				break;
-			case 1:
-				MTop.add(y);
-				break;
-			case 2:
-				Middle.add(y);
-				break;
-			case 3:
-				MBottom.add(y);
-				break;
-			case 4:
-				Bottom.add(y);
-				break;
+			if(z == i) {
+				y.setText("Ryan!");
 			}
+			y.setPreferredSize(new Dimension(75,25));
+			y.addMouseListener(this);
+			Top.add(y);
+			
 			
 		}
-		Topp.add(Top, BorderLayout.NORTH);
-		Topp.add(MTop, BorderLayout.SOUTH);
-		centerp.add(Middle, BorderLayout.NORTH);
-		centerp.add(MBottom, BorderLayout.SOUTH);
-		bottomp.add(Bottom);
-		frame.add(bottomp, BorderLayout.SOUTH);
-		frame.add(Topp, BorderLayout.NORTH);
-		frame.add(centerp, BorderLayout.CENTER);
-		frame.pack();
+		Top.revalidate();
 	}
+	
 	public static void main(String[] args) {
 		new Whack_a_Ryan().setup();
+		
+	}
+	
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+
+		// TODO Auto-generated method stub
+		JButton b = (JButton)e.getSource();
+		if(b.getText().equals("Ryan!")) {
+			Top.removeAll();
+			drawButtons();
+			Score = Score + 1;
+		}
+		else {
+			frame.dispose();
+			JOptionPane.showMessageDialog(null, "Game Over! Your score was " + Score + "!");
+			System.exit(0);
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
